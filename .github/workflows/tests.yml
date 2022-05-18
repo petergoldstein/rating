@@ -31,9 +31,7 @@ jobs:
       postgres:
         image: postgres
         env:
-          POSTGRES_DB: rating_user
-          POSTGRES_USER: rating_user
-          POSTGRES_PASSWORD: rating_password
+          POSTGRES_HOST_AUTH_METHOD: trust
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -44,8 +42,6 @@ jobs:
 
     env:
       DB: ${{ matrix.db }}
-      POSTGRES_USER: rating_user
-      POSTGRES_PASSWORD: rating_password
     steps:
       - name: Checkout
         uses: actions/checkout@v3

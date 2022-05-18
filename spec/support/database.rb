@@ -12,11 +12,14 @@ conn_params = {
 
 case ENV.fetch('DB', nil)
 when 'mysql'
+  require 'mysql2'
+
   client = Mysql2::Client.new(host: '127.0.0.1', username: :root)
   conn_params[:adapter] = :mysql2
   conn_params[:username] = :root
 when 'postgres'
-  ENV['POSTGRES_USER'] ||= 'rating_user'
+  require 'pg'
+
   client = PG::Connection.new(host: '127.0.0.1', user: ENV.fetch('POSTGRES_USER', nil),
     password: ENV.fetch('POSTGRES_PASSWORD', nil)
   )

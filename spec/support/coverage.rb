@@ -2,7 +2,7 @@
 
 if ENV.fetch('COVERAGE', 'false') == 'true'
   require 'simplecov'
-  require 'codecov'
+  require 'codecov' if ENV.fetch('CODECOV_TOKEN', nil)
 
   SimpleCov.formatter = SimpleCov::Formatter::Codecov
 
